@@ -64,7 +64,7 @@ export default function TaxCalculatorPage() {
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-6xl mx-auto p-6">
+              <div className="max-w-6xl mx-auto p-3 sm:p-6">
         {/* Hero Header */}
         <div className="mb-12 pt-8">
           <h1 className="text-3xl sm:text-3xl md:text-4xl font-bold mb-8 text-primary">
@@ -75,53 +75,69 @@ export default function TaxCalculatorPage() {
         {/* Main Calculator Container */}
         <div className="relative">
           {/* Floating Form Card */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-gray-200 p-8 mb-8">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-8 border-b border-gray-200 pb-4">Enter Your Details</h2>
+          <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-gray-200 p-4 sm:p-6 md:p-8 mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-6 sm:mb-8 border-b border-gray-200 pb-4">Enter Your Details</h2>
             
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
               {/* Marital Status */}
               <div>
                 <label className="block font-semibold text-gray-700 mb-3">Marital Status</label>
-                <select
-                  name="maritalStatus"
-                  value={formData.maritalStatus}
-                  onChange={handleChange}
-                  className="w-full sm:w-64 border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 text-base"
-                  required
-                >
-                  <option value="">Select Status</option>
-                  <option value="single">Unmarried</option>
-                  <option value="married">Married</option>
-                </select>
+                <div className="relative w-full sm:w-64">
+                  <select
+                    name="maritalStatus"
+                    value={formData.maritalStatus}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded-md px-4 py-3 pr-10 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 text-base appearance-none"
+                    style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
+                    required
+                  >
+                    <option value="">Select Status</option>
+                    <option value="single">Unmarried</option>
+                    <option value="married">Married</option>
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
               </div>
 
               {/* Section Divider */}
               <div className="border-t border-gray-200 pt-6">
                 <h3 className="text-xl sm:text-xl md:text-2xl font-semibold text-gray-800 mb-6">Income Details</h3>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
                   {/* Salary */}
                   <div className="md:col-span-2">
                     <label className="block font-semibold text-gray-700 mb-2">Basic Salary</label>
-                    <div className="flex gap-3">
+                    <div className="flex flex-col sm:flex-row gap-3">
                       <input
                         type="number"
                         name="income"
                         value={formData.income}
                         onChange={handleChange}
-                        className="flex-1 border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 text-base"
-                        placeholder="35000"
+                        className="flex-1 min-w-0 border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 text-base"
+                        placeholder="0"
                         required
                       />
-                      <select
-                        name="incomeType"
-                        value={formData.incomeType}
-                        onChange={handleChange}
-                        className="border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 text-base"
-                      >
-                        <option value="Monthly">Monthly</option>
-                        <option value="Annual">Annual</option>
-                      </select>
+                      <div className="relative w-full sm:w-auto sm:min-w-[120px]">
+                        <select
+                          name="incomeType"
+                          value={formData.incomeType}
+                          onChange={handleChange}
+                          className="w-full border border-gray-300 rounded-md px-4 py-3 pr-10 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 text-base appearance-none"
+                          style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
+                        >
+                          <option value="Monthly">Monthly</option>
+                          <option value="Annual">Annual</option>
+                        </select>
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                          <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
@@ -170,7 +186,7 @@ export default function TaxCalculatorPage() {
               <div className="border-t border-gray-200 pt-6">
                 <h3 className="text-xl sm:text-xl md:text-2xl font-semibold text-gray-800 mb-6">Deductions & Exemptions</h3>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                   {/* Provident Fund */}
                   <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
                     <label className="block font-semibold text-gray-700 mb-2 text-sm">Provident Fund</label>
